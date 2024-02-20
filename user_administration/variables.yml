@@ -1,0 +1,19 @@
+
+users_to_create:
+  - username: user1
+    password: secure_password1
+  - username: user2
+    password: secure_password2
+
+groups_to_create:
+  - name: group1
+  - name: group2
+
+users_to_groups:
+  - username: user1
+    groups:
+      - group1
+      - group2
+  - username: user2
+    groups:
+      - group1

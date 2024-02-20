@@ -1,0 +1,28 @@
+---
+- name: Create groups
+  group:
+    name: "{{ item.name }}"
+    state: present
+  loop: "{{ groups_to_create }}"
+
+- name: Create users
+  user:
+    name: "{{ item.username }}"
+    password: "{{ item.password | password_hash('sha512') }}"
+    state: present
+  loop: "{{ users_to_create }}"
+
+- name: Add users to groups
+  user:
+    name: "{{ item.username }}"
+    groups: "{{ item.groups }}"
+    append: yes
+  loop: "{{ users_to_groups }}"
+
+- name: Remove users from groups
+  user:
+    name: "{{ item.username }}"
+    groups: "{{ item.groups }}"
+    append: no
+  loop: "{{ users_to_groups }}"
+
