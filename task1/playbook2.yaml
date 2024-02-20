@@ -1,0 +1,16 @@
+---
+- name: copy html file
+  hosts: client1
+  become: yes
+  remote_user: client
+
+  tasks:
+    - name: copyy
+      copy:
+        src: /home/varshitha/task1/file.html
+        dest: /home/client/file.html
+
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted

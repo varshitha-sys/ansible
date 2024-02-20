@@ -1,0 +1,16 @@
+---
+- name: first task
+  hosts: client1
+  remote_user: client
+
+  tasks:
+  - name: install nginx
+    apt:
+      name: nginx
+      state: latest
+    become: yes
+
+  - name: update cache
+    apt:
+      update_cache: yes
+    become: yes
